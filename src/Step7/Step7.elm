@@ -5,6 +5,7 @@ import Html.Events as Events
 import Html.Attributes exposing (..)
 import Html5.DragDrop as DragDrop
 import List.Extra exposing (splitWhen, last)
+import Markdown
 
 
 -- Model
@@ -217,22 +218,28 @@ getOneAfterThisOne list thisOne =
     _ -> Nothing
 
 
-instruction t = p [] [ text t ]
-
-
-instructions = div [inputCardStyle]
-  [ h1 [] [ text "Step 6 - Performance" ]
-  , instruction "The performance is probably OK, but let's measure the function viewColumn and see if we can tweak the performance a bit."
-  , instruction "There is now both a viewColumn and viewColumn2, if you go to the benchmark both will be measured and then compared."
-  , instruction "Try to change how viewColumn2 decides when to display drop zones, viewColumn checks each card and looks for the dragged card amongst all cards, try to turn this around by looking up the card before the dragged card."
-  , a [href "Benchmark.elm"] [text "Benchmark"]
-  ]
-
-
 viewCardInput nameSoFar = div [cardStyle]
   [ input [size 14, Events.onInput EnterCardName, value nameSoFar] []
   , button [Events.onClick AddCard] [text "Add"]
   ]
+
+
+instructions : Html Msg
+instructions =
+    Markdown.toHtml [ inputCardStyle ] """
+# Step 7 - Extras
+
+No more exercises! The following could be interesting look at, maybe write a few tests for example:
+
+* [elm-spa-example](https://github.com/rtfeldman/elm-spa-example)
+* [elm-test](http://package.elm-lang.org/packages/elm-community/elm-test/latest)
+  with or without fuzzers (aka property based tests)
+* [style-elements](http://package.elm-lang.org/packages/mdgriffith/style-elements/latest)
+* [ellie-app](https://ellie-app.com/new) "elm fiddler"
+* [elm-live](https://www.npmjs.com/package/elm-live)
+
+[Step 6](../Step6/Step6.elm) [Benchmark](Benchmark.elm)
+"""
 
 
 viewColumn : List Card -> String -> Maybe Int -> Html Msg

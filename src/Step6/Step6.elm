@@ -294,7 +294,7 @@ checks each card and looks for the dragged card amongst all cards, try to turn
 this around by looking up the card before the dragged card. A type signature
 for ```getOneAfterThisOne``` has been provided.
 
-[Step 5](../Step5/Step5.elm) [Benchmark](Benchmark.elm)
+[Step 5](../Step5/Step5.elm) [Benchmark](Benchmark.elm) [Step 7](../Step7/Step7.elm)
 """
 
 
